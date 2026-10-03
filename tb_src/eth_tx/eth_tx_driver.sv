@@ -75,7 +75,7 @@ class eth_tx_driver extends uvm_driver#(eth_tx_transaction);
           `uvm_info(get_type_name(), $sformatf("pkt_id %0d, tstrb = %0d", pkt.pkt_id, flit.tx_axis_tstrb_i), UVM_LOW);
         end
         else
-          flit.tx_axis_tstrb_i  = 8'h0;
+          flit.tx_axis_tstrb_i  = 8'hFF;
         flit.tx_axis_tkeep_i  = flit.tx_axis_tstrb_i;
         flit.tx_axis_tlast_i  = 1;
       end
@@ -84,8 +84,8 @@ class eth_tx_driver extends uvm_driver#(eth_tx_transaction);
         for(int j = 0; j < 8; j++) begin
           flit.tx_axis_tdata_i[j*8 +: 8] = temp_pkt[i*8 + j];
         end
-        flit.tx_axis_tstrb_i  = 8'hAA;
-        flit.tx_axis_tkeep_i  = 8'hAA;
+        flit.tx_axis_tstrb_i  = 8'hFF;
+        flit.tx_axis_tkeep_i  = 8'hFF;
         flit.tx_axis_tlast_i  = 0;
       end
 
